@@ -371,50 +371,43 @@
   justify-content: center;
 }
 
-/* --- Trust Bar — Minimal, stylish --- */
+/* --- Trust Bar — SVG icons, clean --- */
 .trust-bar {
   background: var(--color-primary-dark);
   color: var(--color-text-light);
   padding: var(--space-xl) 0;
-  border-top: 1px solid rgba(255,255,255,0.1);
 }
 
 .trust-bar__grid {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: var(--space-lg);
   text-align: center;
-  flex-wrap: wrap;
 }
 
 .trust-bar__item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
+  gap: var(--space-sm);
 }
 
-.trust-bar__number {
-  font-family: var(--font-heading-en);
-  font-size: 1.5rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: #fff;
+.trust-bar__icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.85);
 }
 
 .trust-bar__label {
-  font-size: 0.75rem;
-  font-weight: 400;
-  color: rgba(255,255,255,0.6);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-
-.trust-bar__divider {
-  width: 1px;
-  height: 36px;
-  background: rgba(255,255,255,0.2);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.9);
+  line-height: 1.4;
 }
 
 /* --- Service Cards — Borderless, bold --- */

@@ -12,11 +12,7 @@
   .hero__subtitle { font-size: 1.2rem; }
 
   .trust-bar__grid {
-    gap: var(--space-xl);
-  }
-
-  .trust-bar__number {
-    font-size: 1.75rem;
+    grid-template-columns: repeat(4, 1fr);
   }
 
   .grid--2 { grid-template-columns: repeat(2, 1fr); }
