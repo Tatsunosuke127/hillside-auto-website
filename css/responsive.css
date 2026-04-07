@@ -1,0 +1,128 @@
+/* ============================================
+   Hillside Auto Corporation - Responsive
+   Western-style: bold, spacious breakpoints
+   ============================================ */
+
+/* --- Tablet (769px+) --- */
+@media (min-width: 769px) {
+  h1 { font-size: 3rem; }
+  h2 { font-size: 2.35rem; }
+
+  .hero__title { font-size: 2.75rem; }
+  .hero__subtitle { font-size: 1.2rem; }
+
+  .trust-bar__grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .grid--2 { grid-template-columns: repeat(2, 1fr); }
+  .grid--3 { grid-template-columns: repeat(2, 1fr); }
+
+  .review-card {
+    min-width: 340px;
+  }
+
+  .access__layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2xl);
+  }
+
+  .access__map {
+    height: 100%;
+    min-height: 400px;
+    margin-bottom: 0;
+  }
+
+  .footer__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .contact-layout {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: var(--space-2xl);
+  }
+
+  .cert-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .for-foreigners-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2xl);
+    align-items: start;
+  }
+}
+
+/* --- Desktop (1025px+) --- */
+@media (min-width: 1025px) {
+  h1 { font-size: 3.5rem; }
+  h2 { font-size: 2.75rem; }
+
+  .container {
+    padding: 0 var(--space-xl);
+  }
+
+  .header__hamburger {
+    display: none;
+  }
+
+  .header__nav {
+    display: flex;
+  }
+
+  .header__contact-btn {
+    display: inline-flex;
+  }
+
+  .hero {
+    min-height: 100vh;
+    text-align: left;
+    justify-content: flex-start;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .hero__content {
+    margin-left: 8%;
+    max-width: 700px;
+  }
+
+  .hero__title {
+    font-size: 4rem;
+  }
+
+  .hero__subtitle {
+    font-size: 1.3rem;
+  }
+
+  .hero .btn-group {
+    justify-content: flex-start;
+  }
+
+  .grid--3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .grid--4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .footer__grid {
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  }
+
+  .cta-band h2 {
+    font-size: 2rem;
+  }
+
+  .mobile-cta-bar {
+    display: none;
+  }
+
+  .section {
+    padding: var(--space-4xl) 0;
+  }
+}

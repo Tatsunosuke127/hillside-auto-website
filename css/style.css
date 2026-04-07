@@ -1,0 +1,292 @@
+/* ============================================
+   Hillside Auto Corporation - Main Styles
+   ============================================ */
+
+/* --- Design Tokens --- */
+:root {
+  /* Colors — Professional Green palette
+     Inspired by John Deere, Land Rover, TD Bank
+     Green = trust, safety, growth — ideal for automotive */
+  --color-primary-dark: #1B5E20;
+  --color-primary-darker: #0D3B12;
+  --color-accent: #2E7D32;
+  --color-accent-hover: #256B29;
+  --color-accent-bright: #4CAF50;
+  --color-accent-light: #E8F5E9;
+  --color-warm: #F9A825;
+  --color-warm-hover: #F28D00;
+  --color-white: #FFFFFF;
+  --color-light-gray: #F1F8F2;
+  --color-text-dark: #1A2E1C;
+  --color-text-light: #FFFFFF;
+  --color-trust-green: #2E7D32;
+  --color-border: #C8E6C9;
+  --color-overlay: rgba(27, 94, 32, 0.7);
+
+  /* Typography — Sharp, professional */
+  --font-heading-jp: 'Noto Sans JP', sans-serif;
+  --font-heading-en: 'Inter', sans-serif;
+  --font-body: 'Inter', 'Noto Sans JP', sans-serif;
+
+  /* Spacing — Generous Western-style whitespace */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3.5rem;
+  --space-3xl: 5rem;
+  --space-4xl: 8rem;
+
+  /* Layout */
+  --max-width: 1280px;
+  --header-height: 72px;
+  --border-radius: 8px;
+  --border-radius-lg: 12px;
+
+  /* Shadows — Softer, more diffused */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.07);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.1);
+  --shadow-header: 0 1px 12px rgba(0, 0, 0, 0.08);
+
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-base: 0.3s ease;
+}
+
+/* --- Reset --- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text-dark);
+  background-color: var(--color-white);
+  line-height: 1.7;
+  font-size: 15px;
+  font-weight: 400;
+  overflow-x: hidden;
+  letter-spacing: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+button, input, select, textarea {
+  font: inherit;
+  color: inherit;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* --- Typography — Sharp, professional --- */
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+[lang="ja"] h1,
+[lang="ja"] h2,
+[lang="ja"] h3,
+.heading-jp {
+  font-family: var(--font-heading-jp);
+}
+
+[lang="en"] h1,
+[lang="en"] h2,
+[lang="en"] h3,
+.heading-en {
+  font-family: var(--font-heading-en);
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.4rem; }
+h4 { font-size: 1.15rem; }
+
+p {
+  margin-bottom: var(--space-md);
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+/* --- Layout Utilities --- */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+.section {
+  padding: var(--space-3xl) 0;
+}
+
+.section--gray {
+  background-color: var(--color-light-gray);
+}
+
+.section--dark {
+  background-color: var(--color-primary-dark);
+  color: var(--color-text-light);
+}
+
+.section__title {
+  text-align: center;
+  margin-bottom: var(--space-3xl);
+}
+
+.section__title h2 {
+  margin-bottom: var(--space-sm);
+}
+
+.section__title p {
+  color: #475569;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.section--dark .section__title p {
+  color: #ccc;
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-xl);
+}
+
+.grid--2 { grid-template-columns: 1fr; }
+.grid--3 { grid-template-columns: 1fr; }
+.grid--4 { grid-template-columns: 1fr 1fr; }
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.text-center { text-align: center; }
+.text-accent { color: var(--color-accent); }
+
+/* --- Bilingual Display --- */
+[data-lang-ja],
+[data-lang-en] {
+  display: none !important;
+}
+
+body.lang-ja [data-lang-ja] {
+  display: block !important;
+}
+
+body.lang-en [data-lang-en] {
+  display: block !important;
+}
+
+/* Inline elements: span, a, strong, em */
+body.lang-ja span[data-lang-ja],
+body.lang-ja a[data-lang-ja],
+body.lang-en span[data-lang-en],
+body.lang-en a[data-lang-en] {
+  display: inline !important;
+}
+
+/* Headings */
+body.lang-ja h1[data-lang-ja],
+body.lang-ja h2[data-lang-ja],
+body.lang-ja h3[data-lang-ja],
+body.lang-ja h4[data-lang-ja],
+body.lang-en h1[data-lang-en],
+body.lang-en h2[data-lang-en],
+body.lang-en h3[data-lang-en],
+body.lang-en h4[data-lang-en] {
+  display: block !important;
+}
+
+/* Paragraphs */
+body.lang-ja p[data-lang-ja],
+body.lang-en p[data-lang-en] {
+  display: block !important;
+}
+
+/* Divs with flex/grid */
+body.lang-ja div[data-lang-ja].flex-center,
+body.lang-en div[data-lang-en].flex-center {
+  display: flex !important;
+}
+
+/* List items */
+body.lang-ja li[data-lang-ja],
+body.lang-en li[data-lang-en] {
+  display: list-item !important;
+}
+
+/* Labels */
+body.lang-ja label[data-lang-ja],
+body.lang-en label[data-lang-en] {
+  display: block !important;
+}
+
+/* Select options */
+body.lang-ja option[data-lang-ja],
+body.lang-en option[data-lang-en] {
+  display: block !important;
+}
+
+/* Divs (general) */
+body.lang-ja div[data-lang-ja],
+body.lang-en div[data-lang-en] {
+  display: block !important;
+}
+
+/* Form error messages - keep as hidden until error */
+body.lang-ja .form-group:not(.has-error) .form-error[data-lang-ja],
+body.lang-en .form-group:not(.has-error) .form-error[data-lang-en] {
+  display: none !important;
+}
+
+/* Hidden utility */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
