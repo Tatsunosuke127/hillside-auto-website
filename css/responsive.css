@@ -13,6 +13,27 @@
 
   .trust-bar__grid {
     grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-md);
+  }
+
+  .trust-bar__item {
+    flex-direction: column;
+    text-align: center;
+    padding: var(--space-lg);
+  }
+
+  .trust-bar__icon {
+    width: 52px;
+    height: 52px;
+  }
+
+  .trust-bar__icon svg {
+    width: 26px;
+    height: 26px;
+  }
+
+  .trust-bar__label {
+    font-size: 0.85rem;
   }
 
   .grid--2 { grid-template-columns: repeat(2, 1fr); }
@@ -96,6 +117,20 @@
 
   .container {
     padding: 0 var(--space-xl);
+  }
+
+  .header__logo {
+    font-size: 1.4rem;
+    flex-shrink: 0;
+  }
+
+  .header__logo-sub {
+    display: block;
+  }
+
+  .header__logo-text {
+    overflow: visible;
+    white-space: normal;
   }
 
   .header__hamburger {

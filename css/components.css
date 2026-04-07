@@ -135,10 +135,17 @@
   gap: var(--space-sm);
   font-family: var(--font-heading-en);
   font-weight: 700;
-  font-size: 1.4rem;
+  font-size: 1.1rem;
   color: var(--color-primary-dark);
-  flex-shrink: 0;
+  flex-shrink: 1;
+  min-width: 0;
   letter-spacing: -0.02em;
+}
+
+.header__logo-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .header__logo img,
@@ -150,16 +157,13 @@
   flex-shrink: 0;
 }
 
-.header__logo-text {
-  line-height: 1.2;
-}
 
 .header__logo-sub {
   font-family: var(--font-body);
   font-size: 0.6rem;
   font-weight: 400;
   color: #888;
-  display: block;
+  display: none;
 }
 
 /* Desktop nav */
@@ -371,7 +375,7 @@
   justify-content: center;
 }
 
-/* --- Trust Bar — SVG icons, clean --- */
+/* --- Trust Bar — SVG icons, responsive cards --- */
 .trust-bar {
   background: var(--color-primary-dark);
   color: var(--color-text-light);
@@ -381,30 +385,38 @@
 .trust-bar__grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-lg);
-  text-align: center;
+  gap: var(--space-sm);
 }
 
 .trust-bar__item {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: var(--space-sm);
+  gap: var(--space-md);
+  padding: var(--space-md);
+  background: rgba(255,255,255,0.06);
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(255,255,255,0.08);
 }
 
 .trust-bar__icon {
-  width: 52px;
-  height: 52px;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
   border-radius: 50%;
-  border: 1.5px solid rgba(255,255,255,0.25);
+  background: rgba(255,255,255,0.1);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(255,255,255,0.85);
+  color: var(--color-accent-bright, #4CAF50);
+}
+
+.trust-bar__icon svg {
+  width: 22px;
+  height: 22px;
 }
 
 .trust-bar__label {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 600;
   color: rgba(255,255,255,0.9);
   line-height: 1.4;
