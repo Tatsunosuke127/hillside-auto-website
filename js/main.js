@@ -104,6 +104,74 @@
     });
   }
 
+  // --- Headline reveal (char-by-char JA / word-by-word EN) ---
+  var headlineReveals = document.querySelectorAll('.headline-reveal');
+  if (headlineReveals.length > 0) {
+    headlineReveals.forEach(function (el) {
+      // Skip if already split (defensive)
+      if (el.dataset.split === '1') return;
+
+      var splitMode = el.hasAttribute('data-lang-en') ? 'word' : 'char';
+      var idx = 0;
+      var newNodes = [];
+
+      Array.prototype.forEach.call(el.childNodes, function (node) {
+        if (node.nodeType === 1 && node.tagName === 'BR') {
+          newNodes.push(node.cloneNode(false));
+          return;
+        }
+        if (node.nodeType !== 3) {
+          newNodes.push(node.cloneNode(true));
+          return;
+        }
+        var text = node.textContent;
+        var parts = splitMode === 'word'
+          ? text.split(/(\s+)/)
+          : Array.from(text);
+
+        parts.forEach(function (p) {
+          if (p === '') return;
+          if (/^\s+$/.test(p)) {
+            newNodes.push(document.createTextNode(p));
+            return;
+          }
+          var span = document.createElement('span');
+          span.textContent = p;
+          span.style.setProperty('--delay', (idx * 30) + 'ms');
+          idx++;
+          newNodes.push(span);
+        });
+      });
+
+      el.innerHTML = '';
+      newNodes.forEach(function (n) { el.appendChild(n); });
+      el.dataset.split = '1';
+    });
+
+    if ('IntersectionObserver' in window) {
+      var revealObs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            revealObs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+      headlineReveals.forEach(function (el) { revealObs.observe(el); });
+    } else {
+      headlineReveals.forEach(function (el) { el.classList.add('in'); });
+    }
+
+    // Re-trigger when language switches (the previously hidden h1 needs to animate)
+    document.addEventListener('hillside:langchange', function () {
+      setTimeout(function () {
+        headlineReveals.forEach(function (el) {
+          if (el.offsetParent !== null) el.classList.add('in');
+        });
+      }, 50);
+    });
+  }
+
   // --- Active nav link ---
   var currentPath = window.location.pathname.replace(/\/$/, '') || '/';
   var fileName = currentPath.split('/').pop() || 'index.html';

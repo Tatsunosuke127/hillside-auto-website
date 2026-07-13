@@ -4,29 +4,48 @@
 
 /* --- Design Tokens --- */
 :root {
-  /* Colors — Professional Green palette
-     Inspired by John Deere, Land Rover, TD Bank
-     Green = trust, safety, growth — ideal for automotive */
-  --color-primary-dark: #1B5E20;
-  --color-primary-darker: #0D3B12;
-  --color-accent: #2E7D32;
-  --color-accent-hover: #256B29;
-  --color-accent-bright: #4CAF50;
-  --color-accent-light: #E8F5E9;
-  --color-warm: #F9A825;
-  --color-warm-hover: #F28D00;
-  --color-white: #FFFFFF;
-  --color-light-gray: #F1F8F2;
-  --color-text-dark: #1A2E1C;
-  --color-text-light: #FFFFFF;
-  --color-trust-green: #2E7D32;
-  --color-border: #C8E6C9;
-  --color-overlay: rgba(27, 94, 32, 0.7);
+  /* New Brand Palette — Navy + Coral on warm paper
+     Editorial, premium, trustworthy. Replaces the green system. */
+  --navy: #1A1A2E;
+  --navy-soft: #2A2A40;
+  --coral: #D85A30;
+  --coral-dark: #B84620;
+  --coral-soft: #F5E3DA;
+  --base: #FAF8F3;
+  --base-warm: #F2EEE4;
+  --paper: #FFFDF8;
+  --muted: #6B6B6B;
+  --line: #E6E0D4;
+  --line-strong: #C9C2B0;
 
-  /* Typography — Sharp, professional */
-  --font-heading-jp: 'Noto Sans JP', sans-serif;
-  --font-heading-en: 'Inter', sans-serif;
-  --font-body: 'Inter', 'Noto Sans JP', sans-serif;
+  /* Typography — editorial serif + Japanese sans + mono */
+  --serif: "Cormorant Garamond", "Times New Roman", serif;
+  --sans-jp: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --ease-out: cubic-bezier(.2,.7,.2,1);
+
+  /* --- Legacy tokens — retargeted to new Navy/Coral palette --- */
+  --color-primary-dark: var(--navy);
+  --color-primary-darker: var(--navy);
+  --color-accent: var(--coral);
+  --color-accent-hover: var(--coral-dark);
+  --color-accent-bright: var(--coral);
+  --color-accent-light: var(--coral-soft);
+  --color-warm: var(--coral);
+  --color-warm-hover: var(--coral-dark);
+  --color-white: var(--paper);
+  --color-light-gray: var(--base-warm);
+  --color-text-dark: var(--navy);
+  --color-text-light: var(--paper);
+  --color-trust-green: var(--coral);
+  --color-border: var(--line);
+  --color-overlay: rgba(26, 26, 46, 0.7);
+
+  /* Legacy font tokens — retargeted to new typography system */
+  --font-heading-jp: var(--sans-jp);
+  --font-heading-en: var(--serif);
+  --font-body: var(--sans-jp);
 
   /* Spacing — Generous Western-style whitespace */
   --space-xs: 0.25rem;
@@ -38,17 +57,17 @@
   --space-3xl: 5rem;
   --space-4xl: 8rem;
 
-  /* Layout */
+  /* Layout — sharper, editorial */
   --max-width: 1280px;
   --header-height: 72px;
-  --border-radius: 8px;
-  --border-radius-lg: 12px;
+  --border-radius: 2px;
+  --border-radius-lg: 4px;
 
-  /* Shadows — Softer, more diffused */
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.07);
-  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.1);
-  --shadow-header: 0 1px 12px rgba(0, 0, 0, 0.08);
+  /* Shadows — minimal, almost invisible (rely on hairlines instead) */
+  --shadow-sm: 0 1px 2px rgba(26, 26, 46, 0.04);
+  --shadow-md: 0 2px 8px rgba(26, 26, 46, 0.06);
+  --shadow-lg: 0 8px 24px rgba(26, 26, 46, 0.08);
+  --shadow-header: 0 1px 0 var(--line);
 
   /* Transitions */
   --transition-fast: 0.2s ease;
@@ -70,9 +89,10 @@ html {
 }
 
 body {
-  font-family: var(--font-body);
-  color: var(--color-text-dark);
-  background-color: var(--color-white);
+  font-family: var(--sans-jp);
+  color: var(--navy);
+  background: var(--base);
+  font-feature-settings: "palt" 1;
   line-height: 1.7;
   font-size: 15px;
   font-weight: 400;
@@ -109,31 +129,66 @@ button {
   cursor: pointer;
 }
 
-/* --- Typography — Sharp, professional --- */
+/* --- Typography — Editorial, premium --- */
 h1, h2, h3, h4, h5, h6 {
-  line-height: 1.2;
+  line-height: 1.18;
   font-weight: 700;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.01em;
+  color: var(--navy);
 }
 
+/* Japanese headings: Zen Kaku — clean, modern */
 [lang="ja"] h1,
 [lang="ja"] h2,
 [lang="ja"] h3,
-.heading-jp {
-  font-family: var(--font-heading-jp);
+[lang="ja"] h4,
+.heading-jp,
+[data-lang-ja] {
+  font-family: var(--sans-jp);
 }
 
+/* English headings: Cormorant Garamond — editorial serif */
 [lang="en"] h1,
 [lang="en"] h2,
 [lang="en"] h3,
-.heading-en {
-  font-family: var(--font-heading-en);
+[lang="en"] h4,
+.heading-en,
+[data-lang-en] {
+  font-family: var(--serif);
+  font-weight: 500;
+  letter-spacing: -0.005em;
 }
 
-h1 { font-size: 2.5rem; }
-h2 { font-size: 2rem; }
-h3 { font-size: 1.4rem; }
-h4 { font-size: 1.15rem; }
+[lang="en"] h1,
+[lang="en"] h2 {
+  font-style: italic;
+  font-weight: 500;
+}
+
+h1 { font-size: clamp(2.25rem, 5vw, 3.75rem); line-height: 1.1; }
+h2 { font-size: clamp(1.75rem, 3.5vw, 2.5rem); }
+h3 { font-size: 1.35rem; }
+h4 { font-size: 1.1rem; }
+
+/* Eyebrow — small mono uppercase label above headings */
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--coral);
+  margin-bottom: var(--space-md);
+  display: inline-block;
+}
+
+/* Decorative serif accent inline */
+.serif-accent {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  color: var(--coral);
+}
 
 p {
   margin-bottom: var(--space-md);
@@ -160,28 +215,54 @@ p:last-child {
 }
 
 .section--dark {
-  background-color: var(--color-primary-dark);
-  color: var(--color-text-light);
+  background-color: var(--navy);
+  color: var(--paper);
+}
+
+.section--dark h2,
+.section--dark h3 {
+  color: var(--paper);
+}
+
+.section--cream {
+  background-color: var(--base-warm);
 }
 
 .section__title {
   text-align: center;
   margin-bottom: var(--space-3xl);
+  padding-top: var(--space-md);
+  position: relative;
+}
+
+.section__title::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 32px;
+  height: 1px;
+  background: var(--coral);
 }
 
 .section__title h2 {
-  margin-bottom: var(--space-sm);
+  margin-bottom: var(--space-md);
 }
 
 .section__title p {
-  color: #475569;
-  font-size: 1rem;
+  color: var(--muted);
+  font-size: 0.95rem;
   font-weight: 400;
   letter-spacing: 0;
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.85;
 }
 
 .section--dark .section__title p {
-  color: #ccc;
+  color: var(--line);
 }
 
 .grid {
@@ -276,6 +357,32 @@ body.lang-en div[data-lang-en] {
 body.lang-ja .form-group:not(.has-error) .form-error[data-lang-ja],
 body.lang-en .form-group:not(.has-error) .form-error[data-lang-en] {
   display: none !important;
+}
+
+/* --- Headline reveal — char/word stagger animation --- */
+.headline-reveal {
+  /* Allow multi-line: each line acts as its own clipping row */
+  overflow: hidden;
+}
+
+.headline-reveal > span {
+  display: inline-block;
+  transform: translateY(110%);
+  transition: transform 1.2s var(--ease-out);
+  transition-delay: var(--delay, 0ms);
+  will-change: transform;
+}
+
+.headline-reveal.in > span {
+  transform: translateY(0);
+}
+
+/* Reduce motion: skip the slide, just show text */
+@media (prefers-reduced-motion: reduce) {
+  .headline-reveal > span {
+    transform: none;
+    transition: none;
+  }
 }
 
 /* Hidden utility */

@@ -73,6 +73,10 @@
     });
 
     saveLang(lang);
+
+    // Notify listeners (used by headline-reveal to re-trigger animation
+    // when the previously-hidden language version becomes visible)
+    document.dispatchEvent(new CustomEvent('hillside:langchange', { detail: { lang: lang } }));
   }
 
   function init() {
